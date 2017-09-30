@@ -1,0 +1,15 @@
+<div id="palette-container">
+  <h1>Your Colour Palette</h1>
+  <ul>
+    {{#each colours}}
+      <li>
+        <svg width="100" height="100">
+          <circle r="50" cx="50" cy="50" fill="{{this}}">
+        </svg>
+      </li>
+    {{/each}}
+  </ul>
+  <div id="back-container">
+    <a href="/">Make a new one</a>
+  </div>
+</div>

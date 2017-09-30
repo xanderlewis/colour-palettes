@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Choose an Image File</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
+  </head>
+  <body>
+    <div id="container">
+      <div id="choose-image-button">Choose an image file</div>
+      <h2>and we'll make you a nice colour palette.</h2>
+      <form action="/palette" id="image-form">
+        <input type="file" id="image-upload">
+      </form>
+      <canvas id="image-canvas"></canvas>
+    </div>
+    <script src="script.js"></script>
+    <script src="colours.js"></script>
+    <script src="clustering.js"></script>
+    <footer>By Xander Lewis.</footer>
+    <script>
+      // Bind visible button to invisible form input
+      window.addEventListener('load', function () {
+        document.getElementById('choose-image-button').addEventListener('click', function () {
+          document.getElementById('image-upload').click();
+        });
+      });
+    </script>
+  </body>
+</html>
