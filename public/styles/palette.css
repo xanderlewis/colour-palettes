@@ -15,6 +15,20 @@ h1 {
   margin-bottom: 30px;
 }
 
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+.zoom-in {
+  animation-name: zoomIn;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
 a {
   font-weight: 100;
   color: rgba(0,0,0,0.87);
@@ -32,7 +46,7 @@ a:hover {
 }
 
 circle {
-  transition-duration: 0.3s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
   transform-origin: center;
 }
@@ -54,6 +68,26 @@ li {
   display: inline;
 }
 
+svg {
+  opacity: 0;
+}
+
+svg.visible {
+  animation-name: appear;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+  opacity: 1;
+}
+
+.colour-label {
+  font-size: 10px;
+  font-weight: 100;
+  z-index: 10;
+  color: black;
+  mix-blend-mode: color-burn;
+}
+
 footer {
   font-family: 'Cutive Mono';
   font-weight: 100;
@@ -66,4 +100,41 @@ footer {
   right: 0;
   width: 400px;
   color: rgba(0,0,0,0.5)
+}
+
+@keyframes appear {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.96);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+  }
 }

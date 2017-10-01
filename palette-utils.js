@@ -1,6 +1,11 @@
 function colourToHex(colour) {
-  return Object.values(colour).reduce(function (total, current) {
-    return total += current.toString(16);
+  return Object.values(colour).reduce(function (total, current, index) {
+    // (ignore alpha information for hex string)
+    if (index != 3) {
+      return total += Math.round(current).toString(16);
+    } else {
+      return total
+    }
   }, '#');
 }
 

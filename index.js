@@ -19,7 +19,7 @@ app.post('/palette', jsonParser, function (req,res) {
   const palette = req.body;
 
   // Respond with dynamically-generated colour palette page (using handlebars as template engine)
-  res.render('palette', {colours: palette.map(x => paletteUtils.colourToRGBAString(x))});
+  res.render('palette', {colours: palette.map(x => paletteUtils.colourToHex(x))});
 });
 
 app.listen(3000, function () {
