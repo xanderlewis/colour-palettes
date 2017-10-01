@@ -27,6 +27,20 @@ footer {
   color: rgba(0,0,0,0.5)
 }
 
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+.zoom-in {
+  animation-name: zoomIn;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
 #container {
   text-align: center;
   margin: 0px auto;
@@ -56,4 +70,24 @@ footer {
 
 #image-canvas {
   display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+  }
 }

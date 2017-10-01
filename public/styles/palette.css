@@ -15,20 +15,6 @@ h1 {
   margin-bottom: 30px;
 }
 
-.fade-in {
-  animation-name: fadeIn;
-  animation-duration: 0.7s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
-
-.zoom-in {
-  animation-name: zoomIn;
-  animation-duration: 0.7s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
-
 a {
   font-weight: 100;
   color: rgba(0,0,0,0.87);
@@ -116,25 +102,5 @@ footer {
   }
   100% {
     transform: scale(1);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  50% {
-    opacity: 1;
   }
 }
