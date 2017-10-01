@@ -180,7 +180,7 @@ function kMeans(data, k) {
 
     // Check for empty clusters. If so, just retry!
     if (clusters.some(x => x.length == 0)) {
-      console.log('Empty clusters found. Restarting k-means.');
+      //console.log('Empty clusters found. Restarting k-means.');
       return kMeans(data, k);
     }
 
