@@ -1,11 +1,19 @@
 <div id="palette-container">
   <h1 class="zoom-in">Your Colour Palette</h1>
   <ul>
-    {{#each colours}}
+    {{#each hexColours}}
       <li>
-        <svg width="100" height="100">
-          <circle r="50" cx="50" cy="50" fill="{{this}}"></circle>
-          <!-- <text class="colour-label" x="50%" y="50%" text-anchor="middle">{{this}}</text> -->
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <defs>
+            <filter id="f1" x="-50%" y="-50%" width="200%" height="200%">
+              <feOffset result="offOut" in="SourceAlpha" dx="0" dy="2"/>
+              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2"/>
+              <feBlend in="SourceGraphic" in2="blurOut" mode="normal"/>
+            </filter>
+          </defs>
+          <circle r="50" cx="50%" cy="50%" fill="{{this}}"></circle>
+          <circle class="circle-shadow" r="50" cx="50%" cy="50%" fill="black" filter="url(#f1)"></circle>
+          <text class="colour-label" x="50%" y="55%" text-anchor="middle" fill="#f8f8ff">{{this}}</text>
         </svg>
       </li>
     {{/each}}

@@ -13,6 +13,7 @@ function colourToRGBAString(colour) {
   return Object.values(colour).reduce(function (total, current, index) {
     var newTotal = total
     newTotal += Math.round(current);
+    // Add comma, or closing bracket if at end
     if (index == Object.values(colour).length - 1) {
       newTotal += ')';
     } else {

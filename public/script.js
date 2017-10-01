@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
             // Scale image so that width is 100px.
             const aspectRatio = img.height / img.width;
             canvas.width = 100;
-            canvas.height = aspectRatio * 100;
+            canvas.height = aspectRatio * canvas.width;
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
             // Extract colour palette from image
