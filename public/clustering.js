@@ -21,7 +21,7 @@ Array.prototype.equals = function (array) {
         }
     }
     return true;
-}
+};
 // Hide method from for-in loops
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
@@ -31,7 +31,7 @@ Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 * @return {Number} mean value of data set
 */
 function mean(data) {
-  return data.reduce((total,current) => total += current, 0) / data.length;
+    return data.reduce((total,current) => total += current, 0) / data.length;
 }
 /**
 * Calculates the mean point of an n-dimensional dataset
@@ -39,13 +39,13 @@ function mean(data) {
 * @return {Array} mean point of data set
 */
 function meanPoint(data) {
-  var theMeanPoint = [];
-  if (data.length != 0) {
-    for (i = 0; i < data[0].length; i++) {
-      theMeanPoint.push(mean(data.map(x => x[i])));
+    var theMeanPoint = [];
+    if (data.length != 0) {
+        for (let i = 0; i < data[0].length; i++) {
+            theMeanPoint.push(mean(data.map(x => x[i])));
+        }
     }
-  }
-  return theMeanPoint;
+    return theMeanPoint;
 }
 
 /**
@@ -55,7 +55,7 @@ function meanPoint(data) {
 * @return {Number} randomInt - random integer generated
 */
 function randomIntBetween(a, b) {
-  return Math.floor(Math.random() * (b - a + 1)) + a;;
+    return Math.floor(Math.random() * (b - a + 1)) + a;
 }
 
 /**
@@ -65,15 +65,15 @@ function randomIntBetween(a, b) {
 * @return {Number} distance - Euclidean distance between the points
 */
 function euclideanDistance(a, b) {
-  if (a.length != b.length) {
-    //throw 'Error calculating Euclidean distance. Input vectors must have same number of dimensions!';
-    return Math.infinity;
-  }
-  var sum = 0;
-  for (i = 0; i < a.length; i++) {
-    sum += Math.pow(b[i] - a[i], 2);
-  }
-  return Math.sqrt(sum);
+    if (a.length != b.length) {
+        //throw 'Error calculating Euclidean distance. Input vectors must have same number of dimensions!';
+        return Math.infinity;
+    }
+    var sum = 0;
+    for (let i = 0; i < a.length; i++) {
+        sum += Math.pow(b[i] - a[i], 2);
+    }
+    return Math.sqrt(sum);
 }
 
 /**
@@ -82,11 +82,11 @@ function euclideanDistance(a, b) {
 * @return {Number} range - range of the data set
 */
 function rangeOf(data) {
-  return data.reduce(function(total,current) {
-    if (current < total.min) { total.min = current; }
-    if (current > total.max) { total.max = current; }
-    return total;
-  }, {min: data[0], max: data[0]});
+    return data.reduce(function(total,current) {
+        if (current < total.min) { total.min = current; }
+        if (current > total.max) { total.max = current; }
+        return total;
+    }, {min: data[0], max: data[0]});
 }
 
 /**
@@ -95,11 +95,11 @@ function rangeOf(data) {
 * @return {Number} range - range of the data set
 */
 function rangesOf(data) {
-  var ranges = [];
-  for (i = 0; i < data[0].length; i++) {
-    ranges.push(rangeOf(data.map(x => x[i])));
-  }
-  return ranges;
+    var ranges = [];
+    for (let i = 0; i < data[0].length; i++) {
+        ranges.push(rangeOf(data.map(x => x[i])));
+    }
+    return ranges;
 }
 
 /**
@@ -109,16 +109,16 @@ function rangesOf(data) {
 * @return {Array} centroids - array of centroid vectors
 */
 function initialiseCentroidsRandomly(data, k) {
-  var ranges = rangesOf(data);
-  var centroids = [];
-  for (i = 0; i < k; i++) {
-    var centroid = [];
-    for (r in ranges) {
-      centroid.push(randomIntBetween(ranges[r].min, ranges[r].max));
+    var ranges = rangesOf(data);
+    var centroids = [];
+    for (let i = 0; i < k; i++) {
+        var centroid = [];
+        for (var r in ranges) {
+            centroid.push(randomIntBetween(ranges[r].min, ranges[r].max));
+        }
+        centroids.push(centroid);
     }
-    centroids.push(centroid);
-  }
-  return centroids;
+    return centroids;
 }
 
 /**
@@ -128,20 +128,20 @@ function initialiseCentroidsRandomly(data, k) {
 * @return {Array} clusters - array of clusters
 */
 function clusterDataPoints(data, centroids) {
-  var clusters = [];
-  centroids.forEach(function () {
-    clusters.push([]);
-  });
-  data.forEach(function (point) {
-    var nearestCentroid = centroids[0];
-    centroids.forEach(function (centroid) {
-      if (euclideanDistance(point, centroid) < euclideanDistance(point, nearestCentroid)) {
-        nearestCentroid = centroid;
-      }
+    var clusters = [];
+    centroids.forEach(function () {
+        clusters.push([]);
     });
-    clusters[centroids.indexOf(nearestCentroid)].push(point);
-  });
-  return clusters;
+    data.forEach(function (point) {
+        var nearestCentroid = centroids[0];
+        centroids.forEach(function (centroid) {
+            if (euclideanDistance(point, centroid) < euclideanDistance(point, nearestCentroid)) {
+                nearestCentroid = centroid;
+            }
+        });
+        clusters[centroids.indexOf(nearestCentroid)].push(point);
+    });
+    return clusters;
 }
 
 /**
@@ -150,11 +150,11 @@ function clusterDataPoints(data, centroids) {
 * @return {Array} centroids - new centroid vectors
 */
 function getNewCentroids(clusters) {
-  var centroids = [];
-  clusters.forEach(function (cluster) {
-    centroids.push(meanPoint(cluster));
-  });
-  return centroids;
+    var centroids = [];
+    clusters.forEach(function (cluster) {
+        centroids.push(meanPoint(cluster));
+    });
+    return centroids;
 }
 
 /**
@@ -164,36 +164,36 @@ function getNewCentroids(clusters) {
 * @return {Array} clusters - array of clusters (each containing an array of vectors representing a data point)
 */
 function kMeans(data, k) {
-  var centroids;
-  var clusters;
-  var oldClusters;
-  var converged = false;
-  const iterationLimit = 500;
-  var iterations = 0;
+    var centroids;
+    var clusters;
+    var oldClusters;
+    var converged = false;
+    const iterationLimit = 500;
+    var iterations = 0;
 
-  // STEP ONE: Initialise centroids
-  centroids = initialiseCentroidsRandomly(data, k);
+    // STEP ONE: Initialise centroids
+    centroids = initialiseCentroidsRandomly(data, k);
 
-  while (!converged) {
-    console.log('iterated.');
-    iterations += 1;
-    // STEP TWO: Cluster data points according to nearest centroid (assignment step)
-    oldClusters = clusters;
-    clusters = clusterDataPoints(data, centroids);
+    while (!converged) {
+        console.log('iterated.');
+        iterations += 1;
+        // STEP TWO: Cluster data points according to nearest centroid (assignment step)
+        oldClusters = clusters;
+        clusters = clusterDataPoints(data, centroids);
 
-    // Check for empty clusters. If so, just retry!
-    if (clusters.some(x => x.length == 0)) {
-      console.log('Empty clusters found. Restarting k-means.');
-      return kMeans(data, k);
+        // Check for empty clusters. If so, just retry!
+        if (clusters.some(x => x.length == 0)) {
+            console.log('Empty clusters found. Restarting k-means.');
+            return kMeans(data, k);
+        }
+
+        console.log(iterations, iterationLimit);
+        if (clusters.equals(oldClusters) || iterations >= iterationLimit) {
+            converged = true;
+        }
+
+        // STEP THREE: Set centroids to mean point of points belonging to their respective clusters (update step)
+        centroids = getNewCentroids(clusters);
     }
-
-    console.log(iterations, iterationLimit);
-    if (clusters.equals(oldClusters) || iterations >= iterationLimit) {
-      converged = true;
-    }
-
-    // STEP THREE: Set centroids to mean point of points belonging to their respective clusters (update step)
-    centroids = getNewCentroids(clusters);
-  }
-  return clusters;
+    return clusters;
 }
