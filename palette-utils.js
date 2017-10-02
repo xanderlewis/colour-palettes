@@ -16,11 +16,9 @@ function colourToHex(colour) {
 }
 
 function hexToColour(hexString) {
-  console.log(hexString);
   var colour = [];
   for (let i = 0; i < hexString.length; i += 2) {
     colour.push(parseInt(hexString.slice(i, i+2), 16));
-    console.log(colour);
   }
   return colour;
 }

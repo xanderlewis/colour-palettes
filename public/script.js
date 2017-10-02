@@ -24,14 +24,23 @@ window.addEventListener('load', function () {
             canvas.height = aspectRatio * canvas.width;
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-            // Extract colour palette from image
-            const palette = extractColourPalette(canvas);
+            const container = document.getElementById('container');
+            const loadingAnim = document.getElementById('loading-anim');
 
-            console.log(palette);
-            console.log(palette.map(x => colourToHex(x)));
+            // Fade out UI
+            container.classList.add('fade-out');
+            container.addEventListener('animationend', function () {
 
-            // GET page for palette
-            window.location.href = 'palette/' + generatePaletteString(palette);
+              // Show loading animation
+              loadingAnim.classList.add('fade-in');
+              loadingAnim.addEventListener('animationend', function () {
+                // Extract colour palette from image
+                const palette = extractColourPalette(canvas);
+
+                // GET page for palette
+                window.location.href = 'palette/' + generatePaletteString(palette);
+              });
+            });
         }
     }
     reader.readAsDataURL(e.target.files[0]);
