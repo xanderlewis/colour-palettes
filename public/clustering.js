@@ -168,23 +168,27 @@ function kMeans(data, k) {
   var clusters;
   var oldClusters;
   var converged = false;
+  const iterationLimit = 500;
+  var iterations = 0;
 
   // STEP ONE: Initialise centroids
   centroids = initialiseCentroidsRandomly(data, k);
 
   while (!converged) {
     console.log('iterated.');
+    iterations += 1;
     // STEP TWO: Cluster data points according to nearest centroid (assignment step)
     oldClusters = clusters;
     clusters = clusterDataPoints(data, centroids);
 
     // Check for empty clusters. If so, just retry!
     if (clusters.some(x => x.length == 0)) {
-      //console.log('Empty clusters found. Restarting k-means.');
+      console.log('Empty clusters found. Restarting k-means.');
       return kMeans(data, k);
     }
 
-    if (clusters.equals(oldClusters)) {
+    console.log(iterations, iterationLimit);
+    if (clusters.equals(oldClusters) || iterations >= iterationLimit) {
       converged = true;
     }
 
