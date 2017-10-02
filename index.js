@@ -13,7 +13,10 @@ app.set('view engine', 'handlebars');
 // Handle request for palette
 app.get('/palette/:paletteString', function (req,res) {
   const palette = paletteUtils.decodePaletteString(req.params.paletteString);
-  res.render('palette', {hexColours: palette.map(x => paletteUtils.colourToHex(x))});
+  res.render('palette', {
+    hexColours: palette.map(x => paletteUtils.colourToHex(x)),
+    new: req.query.new == 'true' // Indicates whether the palette was just generated or not
+  });
 });
 
 // Listen for requests

@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
                 const palette = extractColourPalette(canvas);
 
                 // GET page for palette
-                window.location.href = 'palette/' + generatePaletteString(palette);
+                window.location.href = 'palette/' + generatePaletteString(palette) + '?new=true';
               });
             });
         }

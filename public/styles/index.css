@@ -123,12 +123,12 @@ footer {
 .spinner > div {
   width: 18px;
   height: 18px;
-  background-color: #333;
+  background-color: rgba(0,0,0,0.87);
 
   border-radius: 100%;
   display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  -webkit-animation: sk-bouncedelay 1s infinite ease-in-out both;
+  animation: sk-bouncedelay 1s infinite ease-in-out both;
 }
 
 .spinner .bounce1 {

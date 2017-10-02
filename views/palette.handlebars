@@ -1,5 +1,9 @@
 <div id="palette-container">
-  <h1 class="zoom-in">Colour Palette</h1>
+  {{#if new}}
+    <h1 class="zoom-in">Here Are Your Colours</h1>
+  {{else}}
+    <h1 class="zoom-in">Colour Palette</h1>
+  {{/if}}
   <ul>
     {{#each hexColours}}
       <li>
