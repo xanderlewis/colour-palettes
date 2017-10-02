@@ -1,3 +1,17 @@
+function mean(data) {
+  return data.reduce((total,current) => total += current, 0) / data.length;
+}
+
+function meanColour(data) {
+  var theMeanColour = [];
+  if (data.length != 0) {
+    for (i = 0; i < data[0].length; i++) {
+      theMeanColour.push(mean(data.map(x => x[i])));
+    }
+  }
+  return theMeanColour;
+}
+
 function colourToHex(colour) {
   return Object.values(colour).reduce(function (total, current, index) {
     // (ignore alpha information for hex string)
@@ -48,5 +62,6 @@ function decodePaletteString(paletteString) {
 module.exports = {
   colourToHex: colourToHex,
   colourToRGBAString: colourToRGBAString,
-  decodePaletteString: decodePaletteString
+  decodePaletteString: decodePaletteString,
+  meanColour: meanColour
 };

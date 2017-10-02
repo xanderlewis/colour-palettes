@@ -23,6 +23,10 @@ a {
   text-decoration: underline;
 }
 
+h1 > a {
+  text-decoration: none;
+}
+
 a:hover {
   color: rgba(0,0,0,0.55);
   cursor: pointer;
@@ -39,6 +43,7 @@ circle {
   transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
   transform-origin: center;
+  pointer-events: all;
 }
 
 .circle-shadow {

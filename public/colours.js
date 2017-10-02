@@ -115,12 +115,12 @@ function extractPixelData(canvas) {
   return colours;
 }
 
-function extractColourPalette(canvas) {
+function extractColourPalette(canvas, k) {
   // Extract raw colours from image
   const allColours = extractPixelData(canvas);
 
   // Cluster raw colours
-  const clusters = kMeans(allColours, 5);
+  const clusters = kMeans(allColours, k);
 
   // Calculate palette (mean colour of each cluster)
   const colours = clusters.map(x => meanColour(x));

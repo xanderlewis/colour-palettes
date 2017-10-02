@@ -22,11 +22,24 @@
         <input type="file" id="image-upload">
       </form>
       <canvas id="image-canvas"></canvas>
+
+      <div id="settings">
+        <input id="num-colours" type="range" min="1" max="12" value="6" oninput="updateOutput(value)"/>
+        <output id="num-colours-output" for="num-colours">6 colours</output>
+      </div>
+
     </div>
     <script src="script.js"></script>
     <script src="colours.js"></script>
     <script src="clustering.js"></script>
     <footer>By Xander Lewis.</footer>
+
+
+    <script>
+      function updateOutput(v) {
+        document.getElementById('num-colours-output').value = `${v} colours`;
+      }
+    </script>
     <script>
       // Bind visible button to invisible form input
       window.addEventListener('load', function () {

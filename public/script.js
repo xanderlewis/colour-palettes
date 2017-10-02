@@ -35,7 +35,7 @@ window.addEventListener('load', function () {
               loadingAnim.classList.add('fade-in');
               loadingAnim.addEventListener('animationend', function () {
                 // Extract colour palette from image
-                const palette = extractColourPalette(canvas);
+                const palette = extractColourPalette(canvas, document.getElementById('num-colours').value);
 
                 // GET page for palette
                 window.location.href = 'palette/' + generatePaletteString(palette) + '?new=true';

@@ -1,6 +1,6 @@
 <div id="palette-container">
   {{#if new}}
-    <h1 class="zoom-in">Here Are Your Colours</h1>
+    <h1 class="zoom-in"><a href="/">Here Are Your Colours</a></h1>
   {{else}}
     <h1 class="zoom-in">Colour Palette</h1>
   {{/if}}
@@ -15,7 +15,7 @@
               <feBlend in="SourceGraphic" in2="blurOut" mode="normal"/>
             </filter>
           </defs>
-          <circle r="50" cx="50%" cy="50%" fill="#{{this}}"></circle>
+          <circle class="swatch" r="50" cx="50%" cy="50%" style="fill:#{{this}};"></circle>
           <circle class="circle-shadow" r="50" cx="50%" cy="50%" fill="black" filter="url(#f1)"></circle>
           <text class="colour-label" x="50%" y="55%" text-anchor="middle" fill="#f8f8ff">#{{this}}</text>
         </svg>
@@ -23,7 +23,11 @@
     {{/each}}
   </ul>
   <div class="fade-in" id="back-container">
-    <a href="/">Make a new one</a>
+    {{#if new}}
+      <a href="/">Make a new one</a>
+    {{else}}
+      <a href="/">Make a colour palette</a>
+    {{/if}}
 
     <a id="tweet-palette-link">Tweet this palette</a>
   </div>
@@ -31,7 +35,7 @@
   <script>
   // POP POP POP...
   (function(){
-    Array.from(document.getElementsByTagName('svg')).forEach(function (item, index) {
+    Array.from(document.getElementsByTagName('svg')).forEach(function(item, index) {
       setTimeout(function () {
         item.classList.add('visible');
       }, 100 * index);
