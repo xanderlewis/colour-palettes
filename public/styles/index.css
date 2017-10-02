@@ -53,6 +53,8 @@ footer {
   animation-duration: 0.7s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
+  cursor: default;
+  pointer-events: none;
 }
 
 #image-form {
