@@ -1,5 +1,5 @@
 <div id="palette-container">
-  <h1 class="zoom-in">Your Colour Palette</h1>
+  <h1 class="zoom-in">Colour Palette</h1>
   <ul>
     {{#each hexColours}}
       <li>
@@ -20,6 +20,8 @@
   </ul>
   <div class="fade-in" id="back-container">
     <a href="/">Make a new one</a>
+
+    <a id="tweet-palette-link">Tweet this palette</a>
   </div>
 
   <script>
@@ -33,3 +35,4 @@
   })();
   </script>
 </div>
+<script src="../tweetLink.js"></script>

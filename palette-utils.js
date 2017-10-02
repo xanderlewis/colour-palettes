@@ -2,7 +2,13 @@ function colourToHex(colour) {
   return Object.values(colour).reduce(function (total, current, index) {
     // (ignore alpha information for hex string)
     if (index != 3) {
-      return total += Math.round(current).toString(16);
+      const hexValue = Math.round(current).toString(16);
+      if (hexValue.length == 1) {
+        return total += '0' + hexValue;
+      } else {
+        return total += hexValue;
+      }
+
     } else {
       return total
     }

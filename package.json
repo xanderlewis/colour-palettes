@@ -9,7 +9,6 @@
   "author": "Xander Lewis",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.2",
     "color": "^2.0.0",
     "express": "^4.15.5",
     "express-handlebars": "^3.0.0"

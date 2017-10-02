@@ -27,6 +27,9 @@ window.addEventListener('load', function () {
             // Extract colour palette from image
             const palette = extractColourPalette(canvas);
 
+            console.log(palette);
+            console.log(palette.map(x => colourToHex(x)));
+
             // GET page for palette
             window.location.href = 'palette/' + generatePaletteString(palette);
         }
