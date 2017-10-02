@@ -138,6 +138,27 @@ input[type=range]::-webkit-slider-thumb {
   display: none;
 }
 
+a.small {
+  display: inline;
+  text-decoration: none;
+}
+
+mark {
+  background-color: inherit;
+  color: rgba(0,0,0,0.87);
+}
+
+p {
+  color: rgba(0,0,0,0.4);
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  text-align: left;
+  font-weight: 100;
+  font-size: 12px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
