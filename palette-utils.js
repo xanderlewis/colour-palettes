@@ -6,7 +6,17 @@ function colourToHex(colour) {
     } else {
       return total
     }
-  }, '#');
+  }, '');
+}
+
+function hexToColour(hexString) {
+  console.log(hexString);
+  var colour = [];
+  for (let i = 0; i < hexString.length; i += 2) {
+    colour.push(parseInt(hexString.slice(i, i+2), 16));
+    console.log(colour);
+  }
+  return colour;
 }
 
 function colourToRGBAString(colour) {
@@ -23,7 +33,16 @@ function colourToRGBAString(colour) {
   }, 'rgba(');
 }
 
+function decodePaletteString(paletteString) {
+  var palette = [];
+  for (let i = 0; i < paletteString.length; i += 6) {
+    palette.push(hexToColour(paletteString.slice(i, i+6)));
+  }
+  return palette;
+}
+
 module.exports = {
   colourToHex: colourToHex,
-  colourToRGBAString: colourToRGBAString
+  colourToRGBAString: colourToRGBAString,
+  decodePaletteString: decodePaletteString
 };

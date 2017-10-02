@@ -1,5 +1,11 @@
 //import extractColourPalette from 'colours';
 
+function generatePaletteString(colours) {
+  return colours.reduce(function(total, current){
+    return total += colourToHex(current);
+  },'');
+}
+
 window.addEventListener('load', function () {
   const imageUpload = document.getElementById('image-upload');
   const canvas = document.getElementById('image-canvas');
@@ -21,20 +27,8 @@ window.addEventListener('load', function () {
             // Extract colour palette from image
             const palette = extractColourPalette(canvas);
 
-            // Post palette back to server
-            var req = new XMLHttpRequest();
-            req.onreadystatechange = function () {
-              if (req.readyState == 4 && req.status == 200) {
-
-                // Show response HTML
-                document.open();
-                document.write(req.response);
-                document.close();
-              }
-            };
-            req.open('POST', 'palette');
-            req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-            req.send(JSON.stringify(palette));
+            // GET page for palette
+            window.location.href = 'palette/' + generatePaletteString(palette);
         }
     }
     reader.readAsDataURL(e.target.files[0]);

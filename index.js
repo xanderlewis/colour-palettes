@@ -14,11 +14,9 @@ const jsonParser = bodyParser.json();
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-// Handle post request (sending colour palette to server)
-app.post('/palette', jsonParser, function (req,res) {
-  const palette = req.body;
-
-  // Respond with dynamically-generated colour palette page (using handlebars as template engine)
+// Handle request for palette
+app.get('/palette/:paletteString', function (req,res) {
+  const palette = paletteUtils.decodePaletteString(req.params.paletteString);
   res.render('palette', {hexColours: palette.map(x => paletteUtils.colourToHex(x))});
 });
 
