@@ -24,19 +24,17 @@
       <canvas id="image-canvas"></canvas>
 
       <div id="settings">
-        <input id="num-colours" type="range" min="1" max="12" value="6" oninput="updateOutput(value)"/>
+        <input id="num-colours" type="range" min="1" max="12" value="6" oninput="numColoursUpdated(value)"/>
         <output id="num-colours-output" for="num-colours">6 colours</output>
       </div>
 
     </div>
-    <script src="script.js"></script>
-    <script src="colours.js"></script>
-    <script src="clustering.js"></script>
+    <script src="bundle.js"></script>
     <footer>By Xander Lewis.</footer>
 
-
     <script>
-      function updateOutput(v) {
+      // Bind number of colours input to output string
+      function numColoursUpdated(v) {
         document.getElementById('num-colours-output').value = `${v} colours`;
       }
     </script>

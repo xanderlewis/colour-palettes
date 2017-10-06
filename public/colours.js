@@ -1,24 +1,8 @@
-//import kMeans from 'clustering';
+const statsUtils = require('./stats-utils.js');
+const clustering = require('./clustering.js');
 
 function lerp(start, end, amount) {
     return start + (end - start) * amount;
-}
-
-function mean(data) {
-    return data.reduce((total,current) => total += current, 0) / data.length;
-}
-
-function meanColour(colours) {
-    var meanColour = [];
-    for (var i = 0; i < 4; i++) {
-        meanColour[i] = mean(colours.map(x => x[i]));
-    }
-
-    // Shift value upwards slightly
-    //meanColour = increaseValueOfRGB(meanColour, 0.2);
-    //meanColour = increaseSaturationOfRGB(meanColour, 0.2);
-
-    return meanColour;
 }
 
 function colourToHex(colour) {
@@ -120,13 +104,16 @@ function extractColourPalette(canvas, k) {
     const allColours = extractPixelData(canvas);
 
     // Cluster raw colours
-    const clusters = kMeans(allColours, k);
+    const clusters = clustering.kMeans(allColours, k);
 
     // Calculate palette (mean colour of each cluster)
-    const colours = clusters.map(x => meanColour(x));
+    const colours = clusters.map(x => statsUtils.meanPoint(x));
     const palette = colours.map(x => ({r: x[0], g: x[1], b: x[2], a: x[3]}));
 
     return palette;
 }
 
-//export extractColourPalette;
+module.exports = {
+    colourToHex: colourToHex,
+    extractColourPalette: extractColourPalette
+};

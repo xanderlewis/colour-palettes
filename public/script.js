@@ -1,8 +1,8 @@
-//import extractColourPalette from 'colours';
+const colourUtils = require('./colours.js');
 
 function generatePaletteString(colours) {
     return colours.reduce(function(total, current){
-        return total += colourToHex(current);
+        return total += colourUtils.colourToHex(current);
     },'');
 }
 
@@ -11,6 +11,7 @@ window.addEventListener('load', function () {
     const canvas = document.getElementById('image-canvas');
     const ctx = canvas.getContext('2d');
 
+    // Set up image upload
     imageUpload.addEventListener('change', function (e) {
     // Draw image to canvas
         const reader = new FileReader();
@@ -35,7 +36,7 @@ window.addEventListener('load', function () {
                     loadingAnim.classList.add('fade-in');
                     loadingAnim.addEventListener('animationend', function () {
                         // Extract colour palette from image
-                        const palette = extractColourPalette(canvas, document.getElementById('num-colours').value);
+                        const palette = colourUtils.extractColourPalette(canvas, document.getElementById('num-colours').value);
 
                         // GET page for palette
                         window.location.href = 'palette/' + generatePaletteString(palette) + '?new=true';

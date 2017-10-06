@@ -1,3 +1,5 @@
+const stats = require('./stats-utils.js');
+
 // Method for comparing arrays (because JavaScript doesn't provide this for some reason)
 Array.prototype.equals = function (array) {
     // if the other array is a falsy value, return
@@ -24,29 +26,6 @@ Array.prototype.equals = function (array) {
 };
 // Hide method from for-in loops
 Object.defineProperty(Array.prototype, 'equals', {enumerable: false});
-
-/**
-* Calculates the mean value of a one-dimensional dataset
-* @param {Array} data - data set
-* @return {Number} mean value of data set
-*/
-function mean(data) {
-    return data.reduce((total,current) => total += current, 0) / data.length;
-}
-/**
-* Calculates the mean point of an n-dimensional dataset
-* @param {Array} data - data set
-* @return {Array} mean point of data set
-*/
-function meanPoint(data) {
-    var theMeanPoint = [];
-    if (data.length != 0) {
-        for (let i = 0; i < data[0].length; i++) {
-            theMeanPoint.push(mean(data.map(x => x[i])));
-        }
-    }
-    return theMeanPoint;
-}
 
 /**
 * Generates a random integer in the closed interval specified by a and b
@@ -152,7 +131,7 @@ function clusterDataPoints(data, centroids) {
 function getNewCentroids(clusters) {
     var centroids = [];
     clusters.forEach(function (cluster) {
-        centroids.push(meanPoint(cluster));
+        centroids.push(stats.meanPoint(cluster));
     });
     return centroids;
 }
@@ -197,3 +176,7 @@ function kMeans(data, k) {
     }
     return clusters;
 }
+
+module.exports = {
+    kMeans: kMeans
+};
