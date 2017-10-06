@@ -181,7 +181,7 @@ function kMeans(data, k) {
 module.exports = {
     kMeans: kMeans
 };
-},{"./stats-utils.js":4}],2:[function(require,module,exports){
+},{"./stats-utils.js":5}],2:[function(require,module,exports){
 const statsUtils = require('./stats-utils.js');
 const clustering = require('./clustering.js');
 
@@ -301,14 +301,38 @@ module.exports = {
     colourToHex: colourToHex,
     extractColourPalette: extractColourPalette
 };
-},{"./clustering.js":1,"./stats-utils.js":4}],3:[function(require,module,exports){
+},{"./clustering.js":1,"./stats-utils.js":5}],3:[function(require,module,exports){
 const colourUtils = require('./colours.js');
 
-function generatePaletteString(colours) {
+function hexToColour(hexString) {
+    var colour = [];
+    for (let i = 0; i < hexString.length; i += 2) {
+        colour.push(parseInt(hexString.slice(i, i+2), 16));
+    }
+    return colour;
+}
+
+function encodePaletteString(colours) {
     return colours.reduce(function(total, current){
         return total += colourUtils.colourToHex(current);
     },'');
 }
+
+function decodePaletteString(paletteString) {
+    var palette = [];
+    for (let i = 0; i < paletteString.length; i += 6) {
+        palette.push(hexToColour(paletteString.slice(i, i+6)));
+    }
+    return palette;
+}
+
+module.exports = {
+    encodePaletteString: encodePaletteString,
+    decodePaletteString: decodePaletteString
+};
+},{"./colours.js":2}],4:[function(require,module,exports){
+const colourUtils = require('./colours.js');
+const paletteString = require('./palette-string.js');
 
 window.addEventListener('load', function () {
     const imageUpload = document.getElementById('image-upload');
@@ -343,7 +367,7 @@ window.addEventListener('load', function () {
                         const palette = colourUtils.extractColourPalette(canvas, document.getElementById('num-colours').value);
 
                         // GET page for palette
-                        window.location.href = 'palette/' + generatePaletteString(palette) + '?new=true';
+                        window.location.href = 'palette/' + paletteString.encodePaletteString(palette) + '?new=true';
                     });
                 });
             };
@@ -352,7 +376,7 @@ window.addEventListener('load', function () {
     }, false);
 });
 
-},{"./colours.js":2}],4:[function(require,module,exports){
+},{"./colours.js":2,"./palette-string.js":3}],5:[function(require,module,exports){
 /**
 * Calculates the mean value of a one-dimensional dataset
 * @param {Array} data - data set
@@ -380,4 +404,4 @@ module.exports = {
     mean: mean,
     meanPoint: meanPoint
 };
-},{}]},{},[3]);
+},{}]},{},[4]);

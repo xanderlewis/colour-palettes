@@ -1,10 +1,5 @@
 const colourUtils = require('./colours.js');
-
-function generatePaletteString(colours) {
-    return colours.reduce(function(total, current){
-        return total += colourUtils.colourToHex(current);
-    },'');
-}
+const paletteString = require('./palette-string.js');
 
 window.addEventListener('load', function () {
     const imageUpload = document.getElementById('image-upload');
@@ -39,7 +34,7 @@ window.addEventListener('load', function () {
                         const palette = colourUtils.extractColourPalette(canvas, document.getElementById('num-colours').value);
 
                         // GET page for palette
-                        window.location.href = 'palette/' + generatePaletteString(palette) + '?new=true';
+                        window.location.href = 'palette/' + paletteString.encodePaletteString(palette) + '?new=true';
                     });
                 });
             };

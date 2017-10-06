@@ -2,7 +2,7 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const app = express();
 
-const paletteString = require('./palette-string.js');
+const paletteString = require('./public/palette-string.js');
 const colourUtils = require('./public/colours.js');
 const statsUtils = require('./public/stats-utils.js');
 
