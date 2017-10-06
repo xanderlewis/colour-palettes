@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify ./public/script.js -o ./public/bundle.js"
+    "build": "browserify ./public/script.js -o ./public/bundle.js",
+    "build-min": "browserify ./public/script.js -o ./public/bundle.js | uglifyjs > bundle.js"
   },
   "author": "Xander Lewis",
   "license": "ISC",
