@@ -79,7 +79,7 @@ svg.visible {
   font-size: 14px;
   font-weight: 100;
   z-index: 10;
-  opacity: 0.3;
+  opacity: 0.2;
   pointer-events: inherit;
 }
 

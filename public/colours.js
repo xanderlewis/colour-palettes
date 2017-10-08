@@ -85,8 +85,21 @@ function hsvToRGB(colour){
 
     return [r * 255, g * 255, b * 255];
 }
+/**
+ * Checks if a colour is 'light' and therefore requires a dark label
+ * @param {Array} colour - the colour to be checked
+ * @return {Bool} requiresDarkLabel - whether or not the colour requires a dark label
+ */
+function requiresDarkLabel(colour) {
+    // Calculate perceived brightness of colour
+    const brightness = (colour[0] * 299 + colour[1] * 587 + colour[2] * 114) / 1000;
 
+    console.log('colour', colour)
+    console.log('brightness', brightness);
 
+    // Check brightness difference between white and the colour
+    return 255 - brightness <= 80;
+}
 
 function extractPixelData(canvas) {
     // Separate out RGBA groups
@@ -115,5 +128,6 @@ function extractColourPalette(canvas, k) {
 
 module.exports = {
     colourToHex: colourToHex,
-    extractColourPalette: extractColourPalette
+    extractColourPalette: extractColourPalette,
+    requiresDarkLabel: requiresDarkLabel
 };

@@ -4,7 +4,6 @@ const app = express();
 
 const paletteString = require('./public/palette-string.js');
 const colourUtils = require('./public/colours.js');
-const statsUtils = require('./public/stats-utils.js');
 
 // Handle static files (in public directory)
 app.use(express.static('public'));
@@ -16,10 +15,10 @@ app.set('view engine', 'handlebars');
 // Handle request for palette
 app.get('/palette/:paletteString', function (req,res) {
     const palette = paletteString.decodePaletteString(req.params.paletteString);
+    const swatches = palette.reduce((total, current) => total.concat([{hexColour: colourUtils.colourToHex(current), darkLabel: colourUtils.requiresDarkLabel(current)}]), []);
 
     res.render('palette', {
-        hexColours: palette.map(x => colourUtils.colourToHex(x)),
-        meanColourHex: colourUtils.colourToHex(statsUtils.meanPoint(palette)),
+        swatches: swatches,
         new: req.query.new == 'true' // Indicates whether the palette was just generated or not
     });
 });

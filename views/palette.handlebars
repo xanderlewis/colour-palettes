@@ -5,7 +5,7 @@
     <h1 class="zoom-in"><a href="/">Colour Palette</a></h1>
   {{/if}}
   <ul>
-    {{#each hexColours}}
+    {{#each swatches}}
       <li>
         <svg width="100" height="100" viewBox="0 0 100 100">
           <defs>
@@ -16,8 +16,12 @@
             </filter>
           </defs>
           <circle class="circle-shadow" r="50" cx="50%" cy="50%" fill="black" filter="url(#f1)"></circle>
-          <circle class="swatch" r="50" cx="50%" cy="50%" style="fill:#{{this}};"></circle>
-          <text class="colour-label" x="50%" y="55%" text-anchor="middle" fill="#f8f8ff">#{{this}}</text>
+          <circle class="swatch" r="50" cx="50%" cy="50%" style="fill:#{{this.hexColour}};"></circle>
+          {{#if this.darkLabel}}
+          <text class="colour-label" x="50%" y="55%" text-anchor="middle" fill="rgba(0,0,0,0.87)">#{{this.hexColour}}</text>
+          {{else}}
+          <text class="colour-label" x="50%" y="55%" text-anchor="middle" fill="#f8f8ff">#{{this.hexColour}}</text>
+          {{/if}}
         </svg>
       </li>
     {{/each}}
