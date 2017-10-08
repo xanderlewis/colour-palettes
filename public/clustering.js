@@ -56,39 +56,13 @@ function euclideanDistance(a, b) {
 }
 
 /**
-* Calculates the range of a one-dimensional data set
-* @param {Array} data - data set
-* @return {Number} range - range of the data set
-*/
-function rangeOf(data) {
-    return data.reduce(function(total,current) {
-        if (current < total.min) { total.min = current; }
-        if (current > total.max) { total.max = current; }
-        return total;
-    }, {min: data[0], max: data[0]});
-}
-
-/**
-* Calculates the ranges of each 'component' in an n-dimensional data set
-* @param {Array} data - data set
-* @return {Number} range - range of the data set
-*/
-function rangesOf(data) {
-    var ranges = [];
-    for (let i = 0; i < data[0].length; i++) {
-        ranges.push(rangeOf(data.map(x => x[i])));
-    }
-    return ranges;
-}
-
-/**
 * Initialises the centroids for the k-means algorithm
 * @param {Array} data - data set
 * @param {Number} k - number of clusters/centroids
 * @return {Array} centroids - array of centroid vectors
 */
 function initialiseCentroidsRandomly(data, k) {
-    var ranges = rangesOf(data);
+    var ranges = stats.rangesOf(data);
     var centroids = [];
     for (let i = 0; i < k; i++) {
         var centroid = [];
